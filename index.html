@@ -1,590 +1,559 @@
-# DOM Manipulation Project
-# Explore&Go — Activity Hub 🌍
-
-## 📌 Project Overview
-Explore&Go is a modern interactive web application built using **HTML5, CSS3, Tailwind CSS, and JavaScript DOM Manipulation**.  
-The website allows users to explore Rwanda-themed activities, interact with dynamic content, manage personalized lists, switch themes, and navigate through image carousels.
-
-This project demonstrates advanced frontend development concepts including:
-
-- DOM Manipulation
-- Dynamic UI updates
-- Interactive carousels
-- Theme switching
-- Responsive web design
-- Event handling
-- Dynamic lists
-- JavaScript classes
-- CSS variables
-- Mobile navigation systems
-
-
-
-# 🛠 Technologies Used
-
-| Technology | Purpose |
-|---|---|
-| HTML5 | Website structure |
-| CSS3 | Styling and animations |
-| Tailwind CSS | Responsive layouts and utility classes |
-| JavaScript | Interactivity and DOM manipulation |
-| Google Fonts | Custom typography |
-| Local DOM APIs | Dynamic content updates |
-
-
-
-# 🧱 HTML Structure Explanation
-
-## `<!DOCTYPE html>`
-Defines the document as an HTML5 webpage.
-
-
-
-## `<html lang="en" data-theme="light">`
-
-### Purpose:
-- `lang="en"` tells browsers the website language is English.
-- `data-theme="light"` stores the active theme mode.
-
-### Contribution:
-Used by JavaScript and CSS to switch between:
-- Light mode
-- Dark mode
-
-Example:
-html
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
-
-
-JavaScript changes it dynamically:
-
-javascript
-html.setAttribute('data-theme', 'dark')
-
-
-
-
-## `<meta charset="UTF-8">`
-
-### Purpose:
-Supports special characters and emojis.
-
-Example:
-- 🇷🇼
-- ✨
-- 🎒
-
-
-
-## `<meta name="viewport">`
-
-### Purpose:
-Makes the website responsive on:
-- Phones
-- Tablets
-- Desktop
-
-Without this, mobile layouts break.
-
-
-## `<script src="https://cdn.tailwindcss.com"></script>`
-
-### Purpose:
-Imports Tailwind CSS framework.
-
-### Contribution:
-Used for:
-- Flexbox
-- Grid systems
-- Spacing
-- Responsive layouts
-
-Example:
-html
-class="max-w-6xl mx-auto px-5"
-
-
-Meaning:
-| Class | Function |
-|---|---|
-| `max-w-6xl` | Maximum width |
-| `mx-auto` | Centers content |
-| `px-5` | Horizontal padding |
-
-
-
-# 🎨 CSS Explanation
-
-## `:root`
-
-### Purpose:
-Stores reusable CSS variables.
-
-Example:
-css
-:root {
-  --bg: #f5f0e8;
-}
-
-
-### Contribution:
-Makes theme switching easier.
-
-Instead of changing all colors manually, the website changes variables dynamically.
-
-
-
-## `[data-theme="dark"]`
-
-### Purpose:
-Applies dark mode colors.
-
-Example:
-
-css
-[data-theme="dark"] {
-  --bg: #120f0c;
-}
-
-
-### Contribution:
-Changes:
-- Backgrounds
-- Text colors
-- Borders
-- Shadows
-
-Automatically updates the whole UI.
-
-
-
-## `transition`
-
-css
-transition: background-color 0.3s ease;
-
-
-### Purpose:
-Creates smooth animations.
-
-### Contribution:
-Theme switching feels modern and smooth.
-
-
-## `position: sticky`
-
-Used in navbar.
-
-### Contribution:
-Keeps navigation visible while scrolling.
-
-
-## `box-shadow`
-
-### Purpose:
-Adds depth to elements.
-
-Example:
-css
-box-shadow: 0 8px 24px var(--shadow);
-
-
-### Contribution:
-Makes cards appear elevated and modern.
-
-
-
-## `border-radius`
-
-### Purpose:
-Rounds corners.
-
-### Contribution:
-Creates modern UI design.
-
-
-## `@media (max-width: 768px)`
-
-### Purpose:
-Responsive design for mobile devices.
-
-### Contribution:
-Changes navigation into hamburger menu on small screens.
-
-
-
-# 🎯 Tailwind CSS Classes Explained
-
-## `flex`
-
-Creates flexible layouts.
-
-Example:
-html
-class="flex items-center justify-between"
-
-
-### Contribution:
-Aligns items horizontally.
-
-
-
-## `grid`
-
-Creates responsive grid layouts.
-
-Example:
-html
-class="grid grid-cols-1 md:grid-cols-2 
-
-### Meaning:
-| Class | Result |
-|---|---|
-| `grid-cols-1` | 1 column on mobile |
-| `md:grid-cols-2` | 2 columns on tablets |
-| `lg:grid-cols-4` | 4 columns on desktop |
-
-
-
-## `gap-6`
-
-Adds spacing between elements.
-
-
-
-## `mx-auto`
-
-Centers containers horizontally.
-
-
-
-## `py-10`
-
-Adds vertical padding.
-
-
-
-## `hidden`
-
-Hides elements dynamically.
-
-Used with JavaScript filtering.
-
-
-# ⚡ JavaScript Explanation
-
-# DOM Manipulation
-
-DOM means:
-> Document Object Model
-
-JavaScript changes webpage content dynamically without reloading the page.
-
-
-# `document.documentElement`
-
-javascript
-const html = document.documentElement;
-
-
-### Purpose:
-Targets the root `<html>` element.
-
-### Contribution:
-Used for theme switching.
-
-Example:
-javascript
-html.setAttribute('data-theme', 'dark')
-
-
-Changes:
-html
-<html data-theme="dark">
-
-
-This activates dark mode styles automatically.
-
-
-# `document.getElementById()`
-
-Example:
-javascript
-const themeBtn = document.getElementById('theme-toggle');
-
-
-### Purpose:
-Selects HTML elements by ID.
-
-### Contribution:
-Allows JavaScript to manipulate:
-- Buttons
-- Text
-- Lists
-- Carousels
-
-
-
-# `querySelectorAll()`
-
-Example:
-javascript
-document.querySelectorAll('.nav-link')
-
-
-### Purpose:
-Selects multiple elements.
-
-### Contribution:
-Used to:
-- Remove active classes
-- Update navigation styles
-
-
-
-# `classList`
-
-Example:
-javascript
-element.classList.add('active')
-
-
-### Purpose:
-Adds or removes CSS classes dynamically.
-
-### Contribution:
-Creates:
-- Active menus
-- Dropdown visibility
-- Hidden items
-- Animations
-
-
-
-# `addEventListener()`
-
-Example:
-```javascript
-btn.addEventListener('click', () => {})
-
-
-### Purpose:
-Listens for user interactions.
-
-### Contribution:
-Handles:
-- Button clicks
-- Carousel navigation
-- Remove actions
-- Theme toggling
-
-
-
-# `createElement()`
-
-Example:
-javascript
-const li = document.createElement('li');
-
-
-### Purpose:
-Creates new HTML elements dynamically.
-
-### Contribution:
-Allows users to:
-- Add activities
-- Add Rwanda facts
-- Generate list items dynamically
-
-
-
-# `appendChild()`
-
-### Purpose:
-Adds elements into the webpage.
-
-Example:
-javascript
-dynamicUl.appendChild(li);
-
-
-
-
-# `setTimeout()`
-
-Example:
-javascript
-setTimeout(() => {}, 200);
-
-
-### Purpose:
-Delays actions.
-
-### Contribution:
-Used for:
-- Smooth animations
-- Fade effects
-- Toast notifications
-
-
-
-# `textContent`
-
-### Purpose:
-Changes text dynamically.
-
-Example:
-javascript
-dynamicText.textContent = messages[msgIdx];
-
-
-### Contribution:
-Updates inspiration messages instantly.
-
-
-
-# `trim()`
-
-### Purpose:
-Removes unnecessary spaces from user input.
-
-
-
-# `toLowerCase()`
-
-### Purpose:
-Makes searching case-insensitive.
-
-Used in:
-javascript
-filterList()
-
-
-
-
-# 🖼 Image Carousel System
-
-## JavaScript Class
-
-javascript
-class ImageCarousel
-
-
-### Purpose:
-Creates reusable carousel systems.
-
-### Contribution:
-Each carousel:
-- Has independent controls
-- Supports navigation arrows
-- Uses indicator dots
-- Updates descriptions dynamically
-
-
-# 📱 Responsive Navigation
-
-## Hamburger Menu
-
-### Purpose:
-Improves mobile experience.
-
-### Contribution:
-Shows compact menu on smaller screens.
-
-
-
-# 🌙 Theme Switching System
-
-## Function:
-javascript
-toggleTheme()
-
-### Contribution:
-Allows users to:
-- Switch light mode
-- Switch dark mode
-
-Dynamically updates:
-- Colors
-- Backgrounds
-- Shadows
-- Text visibility
-
-
-
-# 🔥 Dynamic Features
-
-## Dynamic Rwanda Facts
-Users can:
-- Add facts
-- Remove facts
-
-Generated dynamically using:
-javascript
-createElement()
-appendChild()
-remove()
-
-
-
-
-## Dynamic Activity List
-
-Users can:
-- Add activities
-- Remove activities
-- Search activities
-
-All handled dynamically through DOM manipulation.
-
-
-
-# 🎨 UI/UX Improvements
-
-The project uses:
-- Smooth transitions
-- Modern shadows
-- Rounded corners
-- Responsive layouts
-- Interactive hover effects
-- Animated toast notifications
-
-These improve:
-- User experience
-- Accessibility
-- Professional appearance
-
-
-
-# 📚 Learning Outcomes
-
-This project helped practice:
-
-- Advanced DOM Manipulation
-- JavaScript Events
-- Dynamic HTML generation
-- Responsive web design
-- UI/UX principles
-- Theme systems
-- JavaScript classes
-- CSS animations
-- Tailwind utility-first design
-
-
-
-# 🚀 Future Improvements
-
-Potential upgrades:
-- Backend integration
-- User authentication
-- Database storage
-- API integration
-- Real-time chat system
-- Advanced animations
-- Cloud deployment
-
-
-
-# 👩‍💻 Author
-
-Created by isimbi emelyne.N
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explore&Go — Activity Hub | Dynamic List + Carousel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #f5f0e8;
+      --surface: #ffffff;
+      --surface2: #ede8df;
+      --text: #1a1410;
+      --text2: #6b5e4e;
+      --accent: #e85d26;
+      --accent2: #2563eb;
+      --nav-bg: #1a1410;
+      --nav-text: #f5f0e8;
+      --card-border: #d4c9b8;
+      --badge: #fde68a;
+      --badge-text: #92400e;
+      --shadow: rgba(26,20,16,0.12);
+    }
+    [data-theme="dark"] {
+      --bg: #120f0c;
+      --surface: #1e1812;
+      --surface2: #2a2218;
+      --text: #f0e8dc;
+      --text2: #a89880;
+      --accent: #ff6b35;
+      --accent2: #60a5fa;
+      --nav-bg: #0c0a08;
+      --nav-text: #f0e8dc;
+      --card-border: #3a2e22;
+      --badge: #451a03;
+      --badge-text: #fbbf24;
+      --shadow: rgba(0,0,0,0.4);
+    }
+    * { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    h1,h2,h3,h4,.font-display { font-family: 'Syne', sans-serif; }
+
+    /* NAV */
+    nav {
+      background-color: var(--nav-bg);
+      color: var(--nav-text);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 20px var(--shadow);
+    }
+    .nav-link {
+      color: var(--nav-text);
+      opacity: 0.65;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s, background 0.2s;
+    }
+    .nav-link:hover { opacity: 1; background: rgba(255,255,255,0.08); }
+    .nav-link.active { opacity: 1; background: var(--accent); color: #fff; }
+
+    /* DROPDOWN */
+    .dropdown { position: relative; }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: var(--nav-bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      min-width: 160px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      z-index: 200;
+    }
+    .dropdown-menu.open { display: block; animation: fadeDown 0.2s ease; }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+    .dropdown-item {
+      display: block; padding: 10px 16px;
+      color: var(--nav-text); opacity: 0.75;
+      font-size: 0.875rem; cursor: pointer;
+      transition: opacity 0.2s, background 0.2s;
+    }
+    .dropdown-item:hover { opacity: 1; background: rgba(255,255,255,0.08); }
+
+    /* CAROUSEL CARD (IMAGE + DESCRIPTION) */
+    .carousel-card {
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px var(--shadow);
+      transition: transform 0.25s ease;
+    }
+    .carousel-card:hover { transform: translateY(-6px); }
+    .carousel-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+      background-color: var(--surface2);
+    }
+    .desc-text {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .nav-arrow {
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text);
+      font-size: 1.4rem;
+      font-weight: bold;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .nav-arrow:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      transform: scale(1.03);
+    }
+    .indicator-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text2);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .indicator-dot.active {
+      background: var(--accent);
+      width: 24px;
+      border-radius: 20px;
+    }
+    .list-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      animation: slideIn 0.25s ease;
+    }
+    @keyframes slideIn { from { opacity:0; transform:translateX(-12px); } to { opacity:1; transform:translateX(0); } }
+    .remove-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--text2); font-size: 1rem;
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .remove-btn:hover { background: #fee2e2; color: #dc2626; }
+    .hidden-item { display: none !important; }
+    .section-tag {
+      display: inline-block;
+      background: var(--badge); color: var(--badge-text);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      border: none; border-radius: 10px; cursor: pointer;
+      font-family: 'Syne', sans-serif; font-weight: 600;
+      padding: 10px 22px; font-size: 0.9rem;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: scale(0.98); }
+    .btn-secondary {
+      background: var(--surface2); color: var(--text);
+      border: 1px solid var(--card-border); border-radius: 10px;
+      cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 600;
+      padding: 10px 22px; font-size: 0.9rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { background: var(--card-border); transform: scale(0.98); }
+    .btn-card {
+      width: 100%; background: var(--accent); color: #fff;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-family: 'Syne', sans-serif; font-weight: 600;
+      padding: 9px 0; font-size: 0.82rem;
+      transition: opacity 0.2s;
+    }
+    .input-field {
+      background: var(--surface); border: 1px solid var(--card-border);
+      color: var(--text); border-radius: 10px;
+      padding: 10px 14px; font-size: 0.9rem;
+      outline: none; width: 100%;
+    }
+    .input-field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,93,38,0.15); }
+    .theme-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--nav-text); border-radius: 8px; cursor: pointer;
+      font-size: 1rem; padding: 6px 12px;
+    }
+    #mobile-menu { display: none; flex-direction: column; gap: 4px; padding: 12px 16px 16px; background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,0.08); }
+    #mobile-menu.open { display: flex; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--nav-text); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      #desktop-menu { display: none !important; }
+    }
+    .display-box {
+      background: var(--surface2); border: 1px dashed var(--card-border);
+      border-radius: 10px; padding: 12px 16px; font-style: italic; color: var(--text2);
+    }
+    #toast {
+      position: fixed; bottom: 28px; right: 28px;
+      background: var(--text); color: var(--bg);
+      border-radius: 10px; padding: 12px 20px;
+      font-weight: 600; box-shadow: 0 8px 24px var(--shadow);
+      transform: translateY(80px); opacity: 0;
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), opacity 0.3s;
+      z-index: 999; pointer-events: none;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    footer { background: var(--nav-bg); color: var(--nav-text); border-top: 1px solid rgba(255,255,255,0.06); }
+    
+    /* dynamic list styles */
+    .dynamic-ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .dynamic-ul li {
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px var(--shadow);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: transform 0.2s;
+    }
+    .dynamic-ul li:hover {
+      transform: translateX(6px);
+      background: var(--surface2);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ NAVBAR (unchanged) ═══════════════════════ -->
+<nav>
+  <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span style="font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:800;color:var(--accent);">Explore&Go</span>
+      <span style="font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.5;color:var(--nav-text);text-transform:uppercase;">Activity Hub</span>
+    </div>
+    <div id="desktop-menu" class="flex items-center gap-1">
+      <span class="nav-link active" data-section="home" onclick="setActive(this)">Home</span>
+      <span class="nav-link" data-section="activities" onclick="setActive(this)">Activities</span>
+      <div class="dropdown">
+        <span class="nav-link flex items-center gap-1" id="explore-btn" onclick="toggleDropdown(event)">Explore <span style="font-size:0.7rem;">▼</span></span>
+        <div class="dropdown-menu" id="dropdown-menu">
+          <span class="dropdown-item" onclick="handleDropdownItem('Adventure')">🧗 Adventure</span>
+          <span class="dropdown-item" onclick="handleDropdownItem('Cultural')">🎭 Cultural</span>
+          <span class="dropdown-item" onclick="handleDropdownItem('Culinary')">🍜 Culinary</span>
+          <span class="dropdown-item" onclick="handleDropdownItem('Wellness')">🧘 Wellness</span>
+        </div>
+      </div>
+      <span class="nav-link" data-section="list" onclick="setActive(this)">My List</span>
+      <span class="nav-link" data-section="contact" onclick="setActive(this)">Contact</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()">🌙</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div id="mobile-menu">
+    <span class="nav-link" onclick="setActive(this);toggleMobileMenu()">Home</span>
+    <span class="nav-link" onclick="setActive(this);toggleMobileMenu()">Activities</span>
+    <span class="nav-link" onclick="setActive(this);toggleMobileMenu()">Explore</span>
+    <span class="nav-link" onclick="setActive(this);toggleMobileMenu()">My List</span>
+    <span class="nav-link" onclick="setActive(this);toggleMobileMenu()">Contact</span>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ Hero + Text manipulation (unchanged) ═══════════════════════ -->
+<section class="max-w-6xl mx-auto px-5 pt-16 pb-10">
+  <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-4">
+    <div><div class="section-tag">Welcome back 👋</div><h1 style="font-size:clamp(2rem,5vw,3.6rem);font-weight:800;line-height:1.1;">Discover Your<br><span style="color:var(--accent);">Next Adventure</span></h1></div>
+    <p style="max-width:340px;color:var(--text2);line-height:1.7;">Explore curated activities and  build your personal list, and find your next unforgettable experience — all in one place.</p>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--card-border);border-radius:14px;padding:20px 24px;" class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+    <p id="dynamic-text" style="color:var(--text2);font-size:0.93rem;flex:1;">✨ Click a button to change this message and see DOM text manipulation in actions!</p>
+    <div class="flex gap-2 flex-wrap"><button class="btn-primary" onclick="changeText('inspire')">✦ Inspire Me👽</button><button class="btn-secondary" onclick="changeText('reset')">Reset</button></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ NEW: DYNAMIC LIST (ul) for dynamic content ═══════════════════════ -->
+<section class="max-w-6xl mx-auto px-5 pb-10">
+  <div class="section-tag">✨ Dynamic Insights list</div>
+  <h2 style="font-size:1.6rem;font-weight:800;margin-bottom:16px;">Rwanda Quick Facts</h2>
+  <ul class="dynamic-ul" id="dynamic-info-list">
+    <li>🇷🇼 Known as "Land of a Thousand Hills" — breathtaking landscapes at every turn.</li>
+    <li>🦍 Home to the endangered mountain gorillas in Volcanoes National Park.</li>
+    <li>💧 Lake Kivu is one of Africa's deepest lakes, offering serene beauty and adventure.</li>
+    <li>🎨 The Intore dance is a traditional Rwandan performance symbolizing bravery.</li>
+    <li>☕ Rwanda’s high-altitude coffee is considered some of the finest in the world.</li>
+  </ul>
+  <div class="mt-3 flex gap-2">
+    <button class="btn-secondary text-sm py-1 px-3" onclick="addDynamicFact()">➕ click here to Add New Fact</button>
+    <button class="btn-secondary text-sm py-1 px-3" onclick="removeLastFact()">🗑 click here to Remove Last Fact</button>
+  </div>
+</section>
+
+<!-- test change -->
+
+<!-- ═══════════════════════ VISUAL CARDS (4 cards | arrows only, NO AUTO-SLIDE) ═══════════════════════ -->
+<section class="max-w-6xl mx-auto px-5 pb-16">
+  <div class="section-tag">Rwanda Visual Journey</div>
+  <h2 style="font-size:1.8rem;font-weight:800;margin-bottom:24px;">Land of a Thousand Hills✌️ 🇷🇼</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="carousel-grid">
+    <!-- 4 independent carousel cards injected via JS -->
+  </div>
+</section>
+
+<!-- ═══════════════════════ MY LIST + INPUT (preserved) ═══════════════════════ -->
+<section style="background:var(--surface2);">
+  <div class="max-w-6xl mx-auto px-5 py-14 grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div>
+      <div class="section-tag">Interactive</div>
+      <h2 style="font-size:1.6rem;font-weight:800;margin-bottom:6px;">Add Your Own</h2>
+      <p style="color:var(--text2);margin-bottom:18px;">Type anything — a place, idea, or activity — and add it to your personal list.</p>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:0.78rem;font-weight:600;text-transform:uppercase;color:var(--text2);display:block;margin-bottom:6px;">Your name</label>
+        <div class="flex gap-2"><input id="name-input" class="input-field" type="text" placeholder="e.g. Alex Explorer…" oninput="displayInput()"/></div>
+        <div class="display-box mt-3" id="name-display">Your name will appear here…</div>
+      </div>
+      <div>
+        <label style="font-size:0.78rem;font-weight:600;text-transform:uppercase;color:var(--text2);display:block;margin-bottom:6px;">Add custom activity</label>
+        <div class="flex gap-2"><input id="list-input" class="input-field" type="text" placeholder="e.g. Pottery class…" onkeydown="if(event.key==='Enter') addToList()"/><button class="btn-primary" style="white-space:nowrap;" onclick="addToList()">Add</button></div>
+      </div>
+    </div>
+    <div>
+      <div class="flex items-center justify-between mb-4"><div><div class="section-tag">My List</div><h2 style="font-size:1.6rem;font-weight:800;">Activity Buckets</h2></div><span id="list-count" style="background:var(--accent);color:#fff;font-family:'Syne';font-weight:700;padding:4px 12px;border-radius:999px;">0 items</span></div>
+      <div style="margin-bottom:12px;"><input id="search-input" class="input-field" type="text" placeholder="🔍  Search your list…" oninput="filterList()"/></div>
+      <div id="activity-list" style="max-height:280px;overflow-y:auto;padding-right:4px;"><p id="empty-msg" style="color:var(--text2);text-align:center;padding:24px 0;font-style:italic;">Your list is empty — add some activities from above list! 🎉</p></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="max-w-6xl mx-auto px-5 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8"><div><div style="font-family:'Syne';font-size:1.2rem;font-weight:800;color:var(--accent);">Explore&Go</div><p style="font-size:0.82rem;opacity:0.55;">Your personal activity hub.</p></div><div><div style="font-size:0.7rem;font-weight:700;opacity:0.4;">Quick Links</div><div style="display:flex;flex-direction:column;gap:6px;"><span style="font-size:0.84rem;opacity:0.6;cursor:pointer;">Home</span><span style="font-size:0.84rem;opacity:0.6;cursor:pointer;">Activities</span><span style="font-size:0.84rem;opacity:0.6;cursor:pointer;">My List</span></div></div><div><div style="font-size:0.7rem;font-weight:700;opacity:0.4;">Quick Actions</div><button class="btn-primary" style="font-size:0.82rem;padding:8px 16px;" onclick="toggleTheme()">Toggle Theme</button><p style="font-size:0.75rem;opacity:0.4;margin-top:12px;">© 2025 Explore&Go. Built with ❤️ and JavaScript.</p></div></div></footer>
+<div id="toast">✓ Activity added to your list!</div>
+
+<script>
+  // ----- preserve all original functions -----
+  const html = document.documentElement;
+  const themeBtn = document.getElementById('theme-toggle');
+  function toggleTheme() { const isDark = html.getAttribute('data-theme') === 'dark'; html.setAttribute('data-theme', isDark ? 'light' : 'dark'); themeBtn.textContent = isDark ? '🌙' : '☀️'; }
+  function setActive(el) { document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active')); el.classList.add('active'); }
+  const dropMenu = document.getElementById('dropdown-menu');
+  function toggleDropdown(e) { e.stopPropagation(); dropMenu.classList.toggle('open'); setActive(document.getElementById('explore-btn')); }
+  document.addEventListener('click', () => dropMenu.classList.remove('open'));
+  function handleDropdownItem(cat) { dropMenu.classList.remove('open'); addToListDirectly(`Explore ${cat}`); showToast(`"${cat}" added!`); }
+  function toggleMobileMenu() { const mm = document.getElementById('mobile-menu'); mm.classList.toggle('open'); }
+  const messages = ["🌍 The world is full of experiences — take the first step!", "🎒 Pack light, dream big.", "🔥 Life is too short for boring weekends.", "🌟 Your next story starts here.", "✈️ Start local, dream global!"];
+  let msgIdx = 0;
+  const dynamicText = document.getElementById('dynamic-text');
+  const originalText = dynamicText.textContent;
+  function changeText(mode) { if (mode === 'reset') { dynamicText.textContent = originalText; msgIdx = 0; } else { dynamicText.style.opacity = '0'; setTimeout(() => { dynamicText.textContent = messages[msgIdx % messages.length]; dynamicText.style.transition = 'opacity 0.4s'; dynamicText.style.opacity = '1'; msgIdx++; }, 180); } }
+  const nameInput = document.getElementById('name-input');
+  const nameDisplay = document.getElementById('name-display');
+  function displayInput() { const val = nameInput.value.trim(); nameDisplay.textContent = val ? `👋 Hello, ${val}! Ready to explore?` : 'Your name will appear here…'; nameDisplay.style.color = val ? 'var(--text)' : 'var(--text2)'; }
+  const listContainer = document.getElementById('activity-list');
+  const emptyMsg = document.getElementById('empty-msg');
+  const listCount = document.getElementById('list-count');
+  function updateCount() { const total = listContainer.querySelectorAll('.list-item').length; listCount.textContent = total === 1 ? '1 item' : `${total} items`; emptyMsg.style.display = total === 0 ? 'block' : 'none'; }
+  function createListItem(text) { const div = document.createElement('div'); div.className = 'list-item'; div.setAttribute('data-text', text.toLowerCase()); const span = document.createElement('span'); span.textContent = text; span.style.fontSize = '0.875rem'; const btn = document.createElement('button'); btn.className = 'remove-btn'; btn.innerHTML = '✕'; btn.addEventListener('click', () => { div.style.opacity = '0'; div.style.transform = 'translateX(12px)'; setTimeout(() => { div.remove(); updateCount(); }, 200); }); div.appendChild(span); div.appendChild(btn); return div; }
+  function addToList() { const input = document.getElementById('list-input'); const val = input.value.trim(); if (!val) return; addToListDirectly(val); input.value = ''; input.focus(); }
+  function addToListDirectly(text) { if (emptyMsg.parentElement === listContainer) emptyMsg.style.display = 'none'; const item = createListItem(text); listContainer.appendChild(item); updateCount(); listContainer.scrollTop = listContainer.scrollHeight; }
+  const searchInput = document.getElementById('search-input');
+  function filterList() { const query = searchInput.value.toLowerCase().trim(); listContainer.querySelectorAll('.list-item').forEach(item => { const txt = item.getAttribute('data-text') || ''; if (txt.includes(query)) item.classList.remove('hidden-item'); else item.classList.add('hidden-item'); }); }
+  const toast = document.getElementById('toast'); let toastTimer;
+  function showToast(msg) { toast.textContent = '✓ ' + msg; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800); }
+
+  // ----- DYNAMIC LIST (ul) functions for dynamic content -----
+  const dynamicUl = document.getElementById('dynamic-info-list');
+  const factsPool = [
+    "🦒 Akagera National Park hosts the Big Five: lions, leopards, elephants, rhinos, and buffalo.",
+    "🌿 Rwanda is one of the greenest nations, banning plastic bags since 2008.",
+    "🏞️ The Congo Nile Trail offers 227km of stunning cycling and hiking routes.",
+    "🎶 In Rwanda, 'Umuganda' is a monthly community work day bringing people together.",
+    "📚 Rwanda has one of the highest rates of women in parliament worldwide.",
+    "🏔️ Mount Karisimbi is the highest volcano in Rwanda at 4,507 meters.",
+    "🐘 The rare and majestic giant forest hogs roam in Nyungwe Forest.",
+    "🍌 Banana beer (Urwagwa) is a traditional Rwandan drink made from fermented bananas😊."
+  ];
+  let factIndex = 0;
+  function addDynamicFact() {
+    const newFact = factsPool[factIndex % factsPool.length];
+    const li = document.createElement('li');
+    li.textContent = newFact;
+    li.style.opacity = '0';
+    dynamicUl.appendChild(li);
+    setTimeout(() => { li.style.opacity = '1'; li.style.transition = 'opacity 0.3s'; }, 10);
+    factIndex++;
+    showToast(`✨ New insight added!`);
+    dynamicUl.scrollTop = dynamicUl.scrollHeight;
+  }
+  function removeLastFact() {
+    if (dynamicUl.children.length > 0) {
+      const lastItem = dynamicUl.lastElementChild;
+      lastItem.style.opacity = '0';
+      setTimeout(() => { lastItem.remove(); showToast(`🗑 Removed last fact`); }, 200);
+    } else {
+      showToast(`ℹ️ No more facts to remove`);
+    }
+  }
+
+  // ----- CAROUSEL DATA: 20 rich images & descriptions (Rwanda themed) -----
+  const imageSet = [
+    { url: "https://images.pexels.com/photos/31466702/pexels-photo-31466702.jpeg", desc: "Golden sunrise over Rwandan hills, mist rolling through the valleys — a moment of pure serenity." },
+    { url: "https://images.pexels.com/photos/17368772/pexels-photo-17368772.jpeg", desc: "Vibrant local market in Kigali: handwoven baskets and the heartbeat of Rwandan craftmanship." },
+    { url: "https://images.pexels.com/photos/20730313/pexels-photo-20730313.jpeg", desc: "Rwandan Defense Force marching in discipline and honor, protecting the nation's pride." },
+    { url: "https://images.pexels.com/photos/36478037/pexels-photo-36478037.jpeg", desc: "Schoolchildren in colorful uniforms walking to class — the future of Rwanda is bright." },
+    { url: "https://images.pexels.com/photos/34303083/pexels-photo-34303083.jpeg", desc: "Mountain gorilla in the mist: a rare encounter in Volcanoes National Park." },
+    { url: "https://images.pexels.com/photos/32806426/pexels-photo-32806426.jpeg", desc: "Intore dancers performing at a cultural festival, preserving ancient Rwandan traditions." },
+    { url: "https://images.pexels.com/photos/35216150/pexels-photo-35216150.jpeg", desc: "Coffee farmers harvesting cherries on rolling slopes — Rwanda's aromatic treasure." },
+    { url: "https://images.pexels.com/photos/36200692/pexels-photo-36200692.jpeg", desc: "Lake Kivu’s tranquil waters reflecting a fisherman's canoe at twilight." },
+    { url: "https://images.pexels.com/photos/34644497/pexels-photo-34644497.jpeg", desc: "Genocide Memorial gardens: a place of remembrance, resilience and hope." },
+    { url: "https://images.pexels.com/photos/19354338/pexels-photo-19354338.png", desc: "Artisan weaving intricate peace baskets (Agaseke) — symbol of unity." },
+    { url: "https://images.pexels.com/photos/31448433/pexels-photo-31448433.jpeg", desc: "Nyungwe Forest canopy walk: adventure above the ancient rainforest." },
+    { url: "https://images.pexels.com/photos/2589320/pexels-photo-2589320.jpeg", desc: "Rwandan youth embracing modern education and technology for growth." },
+    { url: "https://images.pexels.com/photos/1238272/pexels-photo-1238272.jpeg", desc: "Wildlife conservation: giraffes in Akagera National Park roaming freely." },
+    { url: "https://images.pexels.com/photos/33145563/pexels-photo-33145563.jpeg", desc: "Traditional umuganuro (communal work) — community strength & togetherness." },
+    { url: "https://images.pexels.com/photos/30463583/pexels-photo-30463583.jpeg", desc: "Breathtaking view of Mount Bisoke, an active volcano covered in bamboo." },
+    { url: "https://images.pexels.com/photos/33145567/pexels-photo-33145567.jpeg", desc: "Pottery workshop in the countryside, shaping clay into art." },
+    { url: "https://images.pexels.com/photos/31951735/pexels-photo-31951735.jpeg", desc: "Colorful umushanana fabric worn during Umuganura harvest festival." },
+    { url: "https://media.istockphoto.com/id/2271188092/photo/cinematic-aerial-drone-footage-of-karongi-and-lake-kivu-in-rwanda.jpg?s=612x612&w=0&k=20&c=9m8aafy3GsrZQZkZImBXV1y0FvA05JWnH_-GEefdk9c=", desc: "Motherland - Karongi district's majestic landscape along Lake Kivu, the heart of Rwanda." },
+    { url: "https://media.istockphoto.com/id/1126372263/photo/fishing-boats-on-lake-kivu-rwanda-fishermens-silhouettes-evening-sun-shining-on-water.jpg?s=612x612&w=0&k=20&c=NYtb2LjTXZBMK06Elow1V3dDlgCpKTTLk5BSulTPDKA=", desc: "Fishermen silhouettes on Lake Kivu — timeless evening glow over Karongi." },
+    { url: "https://media.istockphoto.com/id/610764080/photo/fishing-boats-on-lake-kivu-rwanda.jpg?s=612x612&w=0&k=20&c=gw4HU-O-5OFOIXVfz0thjrx-VTaxjVY8iV6aU6ehJgk=", desc: "Calm waters and wooden boats, a peaceful rhythm of lakeside life in Karongi." }
+  ];
+
+  // Split into 4 groups for 4 cards (balanced)
+  const groups = [[], [], [], []];
+  imageSet.forEach((img, idx) => { groups[idx % 4].push(img); });
+
+  // ----- ImageCarousel with MANUAL navigation ONLY (no auto timer) -----
+  class ImageCarousel {
+    constructor(containerElement, imagesArray, startIdx = 0) {
+      this.container = containerElement;
+      this.images = imagesArray;
+      this.current = startIdx % imagesArray.length;
+      this.imgElement = null;
+      this.descElement = null;
+      this.initUI();
+    }
+    initUI() {
+      this.container.innerHTML = `
+        <div class="carousel-card">
+          <img class="carousel-img" id="carousel-img-${this.container.id}" src="${this.images[this.current].url}" alt="Rwandan scene" style="width:100%;height:200px;object-fit:cover;">
+          <div class="p-4 flex flex-col gap-2">
+            <p class="desc-text" id="desc-${this.container.id}" style="font-weight:500;">${this.images[this.current].desc}</p>
+            <div class="flex justify-between items-center mt-2">
+              <div class="flex gap-2" id="dots-${this.container.id}"></div>
+              <div class="flex gap-2">
+                <button class="nav-arrow prev-arrow" style="width:32px;height:32px;font-size:1.2rem;">←</button>
+                <button class="nav-arrow next-arrow" style="width:32px;height:32px;font-size:1.2rem;">→</button>
+              </div>
+            </div>
+            <button class="btn-card mt-2" data-activity-name="">➕ Add to List</button>
+          </div>
+        </div>
+      `;
+      this.imgElement = this.container.querySelector(`#carousel-img-${this.container.id}`);
+      this.descElement = this.container.querySelector(`#desc-${this.container.id}`);
+      const prevBtn = this.container.querySelector('.prev-arrow');
+      const nextBtn = this.container.querySelector('.next-arrow');
+      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); this.prev(); });
+      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); this.next(); });
+      const addBtn = this.container.querySelector('.btn-card');
+      addBtn.textContent = "➕ Add to List";
+      addBtn.addEventListener('click', () => { 
+        const shortDesc = this.images[this.current].desc.length > 45 ? this.images[this.current].desc.substring(0, 42) + "..." : this.images[this.current].desc;
+        const activityName = `📸 ${shortDesc}`;
+        addToListDirectly(activityName); 
+        showToast(`"${shortDesc}" added!`); 
+      });
+      this.renderDots();
+    }
+    renderDots() {
+      const dotsContainer = this.container.querySelector(`#dots-${this.container.id}`);
+      if(!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      this.images.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.className = `indicator-dot ${idx === this.current ? 'active' : ''}`;
+        dot.addEventListener('click', () => { this.goTo(idx); });
+        dotsContainer.appendChild(dot);
+      });
+    }
+    updateDisplay() {
+      this.imgElement.style.opacity = '0';
+      setTimeout(() => {
+        this.imgElement.src = this.images[this.current].url;
+        this.descElement.textContent = this.images[this.current].desc;
+        this.imgElement.style.opacity = '1';
+        this.renderDots();
+      }, 150);
+    }
+    goTo(index) { this.current = index % this.images.length; this.updateDisplay(); }
+    next() { this.current = (this.current + 1) % this.images.length; this.updateDisplay(); }
+    prev() { this.current = (this.current - 1 + this.images.length) % this.images.length; this.updateDisplay(); }
+  }
+
+  // Build 4 cards into grid container
+  const gridContainer = document.getElementById('carousel-grid');
+  const carouselInstances = [];
+  for (let i = 0; i < 4; i++) {
+    const cardDiv = document.createElement('div');
+    cardDiv.id = `carousel-${i}`;
+    cardDiv.className = "carousel-card-wrapper";
+    gridContainer.appendChild(cardDiv);
+    const groupImages = groups[i].length ? groups[i] : [{ url: "https://images.pexels.com/photos/31466702/pexels-photo-31466702.jpeg", desc: "Explore Rwanda's beauty" }];
+    const carousel = new ImageCarousel(cardDiv, groupImages, 0);
+    carouselInstances.push(carousel);
+  }
+
+  // Preserve global references
+  window.addCard = function(name) { addToListDirectly(name); showToast(`"${name}" added!`); };
+  window.addToListDirectly = addToListDirectly;
+  window.addToList = addToList;
+  window.showToast = showToast;
+  window.setActive = setActive;
+  window.toggleTheme = toggleTheme;
+  window.changeText = changeText;
+  window.displayInput = displayInput;
+  window.filterList = filterList;
+  window.handleDropdownItem = handleDropdownItem;
+  window.toggleDropdown = toggleDropdown;
+  window.toggleMobileMenu = toggleMobileMenu;
+  window.addDynamicFact = addDynamicFact;
+  window.removeLastFact = removeLastFact;
+</script>
+</body>
+</html>
