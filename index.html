@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Explore&Go — Activity Hub | Dynamic List + Carousel</title>
+  <title>Explore&Go — Activity Hub | Working Carousel</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
   <style>
@@ -46,7 +46,6 @@
     }
     h1,h2,h3,h4,.font-display { font-family: 'Syne', sans-serif; }
 
-    /* NAV */
     nav {
       background-color: var(--nav-bg);
       color: var(--nav-text);
@@ -67,7 +66,6 @@
     .nav-link:hover { opacity: 1; background: rgba(255,255,255,0.08); }
     .nav-link.active { opacity: 1; background: var(--accent); color: #fff; }
 
-    /* DROPDOWN */
     .dropdown { position: relative; }
     .dropdown-menu {
       display: none;
@@ -92,7 +90,6 @@
     }
     .dropdown-item:hover { opacity: 1; background: rgba(255,255,255,0.08); }
 
-    /* CAROUSEL CARD (IMAGE + DESCRIPTION) */
     .carousel-card {
       background: var(--surface);
       border: 1px solid var(--card-border);
@@ -106,7 +103,6 @@
       width: 100%;
       height: 200px;
       object-fit: cover;
-      transition: opacity 0.2s ease;
       background-color: var(--surface2);
     }
     .desc-text {
@@ -114,6 +110,7 @@
       line-height: 1.5;
       color: var(--text);
       font-weight: 500;
+      min-height: 80px;
     }
     .nav-arrow {
       background: var(--surface);
@@ -236,7 +233,6 @@
     #toast.show { transform: translateY(0); opacity: 1; }
     footer { background: var(--nav-bg); color: var(--nav-text); border-top: 1px solid rgba(255,255,255,0.06); }
     
-    /* dynamic list styles */
     .dynamic-ul {
       list-style-type: none;
       padding-left: 0;
@@ -261,7 +257,6 @@
 </head>
 <body>
 
-<!-- ═══════════════════════ NAVBAR (unchanged) ═══════════════════════ -->
 <nav>
   <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
     <div class="flex items-center gap-2">
@@ -297,11 +292,10 @@
   </div>
 </nav>
 
-<!-- ═══════════════════════ Hero + Text manipulation (unchanged) ═══════════════════════ -->
 <section class="max-w-6xl mx-auto px-5 pt-16 pb-10">
   <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-4">
     <div><div class="section-tag">Welcome back 👋</div><h1 style="font-size:clamp(2rem,5vw,3.6rem);font-weight:800;line-height:1.1;">Discover Your<br><span style="color:var(--accent);">Next Adventure</span></h1></div>
-    <p style="max-width:340px;color:var(--text2);line-height:1.7;">Explore curated activities and  build your personal list, and find your next unforgettable experience — all in one place.</p>
+    <p style="max-width:340px;color:var(--text2);line-height:1.7;">Explore curated activities and build your personal list, and find your next unforgettable experience — all in one place.</p>
   </div>
   <div style="background:var(--surface);border:1px solid var(--card-border);border-radius:14px;padding:20px 24px;" class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
     <p id="dynamic-text" style="color:var(--text2);font-size:0.93rem;flex:1;">✨ Click a button to change this message and see DOM text manipulation in actions!</p>
@@ -309,7 +303,6 @@
   </div>
 </section>
 
-<!-- ═══════════════════════ NEW: DYNAMIC LIST (ul) for dynamic content ═══════════════════════ -->
 <section class="max-w-6xl mx-auto px-5 pb-10">
   <div class="section-tag">✨ Dynamic Insights list</div>
   <h2 style="font-size:1.6rem;font-weight:800;margin-bottom:16px;">Rwanda Quick Facts</h2>
@@ -326,18 +319,12 @@
   </div>
 </section>
 
-<!-- test change -->
-
-<!-- ═══════════════════════ VISUAL CARDS (4 cards | arrows only, NO AUTO-SLIDE) ═══════════════════════ -->
 <section class="max-w-6xl mx-auto px-5 pb-16">
   <div class="section-tag">Rwanda Visual Journey</div>
   <h2 style="font-size:1.8rem;font-weight:800;margin-bottom:24px;">Land of a Thousand Hills✌️ 🇷🇼</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="carousel-grid">
-    <!-- 4 independent carousel cards injected via JS -->
-  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="carousel-grid"></div>
 </section>
 
-<!-- ═══════════════════════ MY LIST + INPUT (preserved) ═══════════════════════ -->
 <section style="background:var(--surface2);">
   <div class="max-w-6xl mx-auto px-5 py-14 grid grid-cols-1 md:grid-cols-2 gap-10">
     <div>
@@ -356,7 +343,7 @@
     </div>
     <div>
       <div class="flex items-center justify-between mb-4"><div><div class="section-tag">My List</div><h2 style="font-size:1.6rem;font-weight:800;">Activity Buckets</h2></div><span id="list-count" style="background:var(--accent);color:#fff;font-family:'Syne';font-weight:700;padding:4px 12px;border-radius:999px;">0 items</span></div>
-      <div style="margin-bottom:12px;"><input id="search-input" class="input-field" type="text" placeholder="🔍  Search your list…" oninput="filterList()"/></div>
+      <div style="margin-bottom:12px;"><input id="search-input" class="input-field" type="text" placeholder="🔍 Search your list…" oninput="filterList()"/></div>
       <div id="activity-list" style="max-height:280px;overflow-y:auto;padding-right:4px;"><p id="empty-msg" style="color:var(--text2);text-align:center;padding:24px 0;font-style:italic;">Your list is empty — add some activities from above list! 🎉</p></div>
     </div>
   </div>
@@ -366,7 +353,7 @@
 <div id="toast">✓ Activity added to your list!</div>
 
 <script>
-  // ----- preserve all original functions -----
+  // Original preserved functions
   const html = document.documentElement;
   const themeBtn = document.getElementById('theme-toggle');
   function toggleTheme() { const isDark = html.getAttribute('data-theme') === 'dark'; html.setAttribute('data-theme', isDark ? 'light' : 'dark'); themeBtn.textContent = isDark ? '🌙' : '☀️'; }
@@ -396,7 +383,6 @@
   const toast = document.getElementById('toast'); let toastTimer;
   function showToast(msg) { toast.textContent = '✓ ' + msg; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800); }
 
-  // ----- DYNAMIC LIST (ul) functions for dynamic content -----
   const dynamicUl = document.getElementById('dynamic-info-list');
   const factsPool = [
     "🦒 Akagera National Park hosts the Big Five: lions, leopards, elephants, rhinos, and buffalo.",
@@ -430,7 +416,7 @@
     }
   }
 
-  // ----- CAROUSEL DATA: 20 rich images & descriptions (Rwanda themed) -----
+  // CAROUSEL DATA - 20 images split into 4 groups of 5 images each
   const imageSet = [
     { url: "https://images.pexels.com/photos/31466702/pexels-photo-31466702.jpeg", desc: "Golden sunrise over Rwandan hills, mist rolling through the valleys — a moment of pure serenity." },
     { url: "https://images.pexels.com/photos/17368772/pexels-photo-17368772.jpeg", desc: "Vibrant local market in Kigali: handwoven baskets and the heartbeat of Rwandan craftmanship." },
@@ -439,7 +425,7 @@
     { url: "https://images.pexels.com/photos/34303083/pexels-photo-34303083.jpeg", desc: "Mountain gorilla in the mist: a rare encounter in Volcanoes National Park." },
     { url: "https://images.pexels.com/photos/32806426/pexels-photo-32806426.jpeg", desc: "Intore dancers performing at a cultural festival, preserving ancient Rwandan traditions." },
     { url: "https://images.pexels.com/photos/35216150/pexels-photo-35216150.jpeg", desc: "Coffee farmers harvesting cherries on rolling slopes — Rwanda's aromatic treasure." },
-    { url: "https://images.pexels.com/photos/36200692/pexels-photo-36200692.jpeg", desc: "Lake Kivu’s tranquil waters reflecting a fisherman's canoe at twilight." },
+    { url: "https://images.pexels.com/photos/36200692/pexels-photo-36200692.jpeg", desc: "Lake Kivu's tranquil waters reflecting a fisherman's canoe at twilight." },
     { url: "https://images.pexels.com/photos/34644497/pexels-photo-34644497.jpeg", desc: "Genocide Memorial gardens: a place of remembrance, resilience and hope." },
     { url: "https://images.pexels.com/photos/19354338/pexels-photo-19354338.png", desc: "Artisan weaving intricate peace baskets (Agaseke) — symbol of unity." },
     { url: "https://images.pexels.com/photos/31448433/pexels-photo-31448433.jpeg", desc: "Nyungwe Forest canopy walk: adventure above the ancient rainforest." },
@@ -454,92 +440,99 @@
     { url: "https://media.istockphoto.com/id/610764080/photo/fishing-boats-on-lake-kivu-rwanda.jpg?s=612x612&w=0&k=20&c=gw4HU-O-5OFOIXVfz0thjrx-VTaxjVY8iV6aU6ehJgk=", desc: "Calm waters and wooden boats, a peaceful rhythm of lakeside life in Karongi." }
   ];
 
-  // Split into 4 groups for 4 cards (balanced)
+  // Split into 4 groups (5 images per card)
   const groups = [[], [], [], []];
   imageSet.forEach((img, idx) => { groups[idx % 4].push(img); });
 
-  // ----- ImageCarousel with MANUAL navigation ONLY (no auto timer, no animation interval) -----
-  class ImageCarousel {
-    constructor(containerElement, imagesArray, startIdx = 0) {
-      this.container = containerElement;
-      this.images = imagesArray;
-      this.current = startIdx % imagesArray.length;
-      this.imgElement = null;
-      this.descElement = null;
-      this.initUI();
-      // NO AUTO-SLIDE: removed any setInterval or auto timer
+  // SIMPLE WORKING CAROUSEL
+  function createCarousel(cardIndex, images) {
+    const container = document.getElementById(`carousel-${cardIndex}`);
+    if (!container) return;
+    
+    let currentIndex = 0;
+    
+    function updateDisplay() {
+      const img = container.querySelector('.carousel-img');
+      const desc = container.querySelector('.desc-text');
+      const dots = container.querySelectorAll('.indicator-dot');
+      
+      img.src = images[currentIndex].url;
+      desc.textContent = images[currentIndex].desc;
+      
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
     }
-    initUI() {
-      this.container.innerHTML = `
-        <div class="carousel-card">
-          <img class="carousel-img" id="carousel-img-${this.container.id}" src="${this.images[this.current].url}" alt="Rwandan scene" style="width:100%;height:200px;object-fit:cover;">
-          <div class="p-4 flex flex-col gap-2">
-            <p class="desc-text" id="desc-${this.container.id}" style="font-weight:500;">${this.images[this.current].desc}</p>
-            <div class="flex justify-between items-center mt-2">
-              <div class="flex gap-2" id="dots-${this.container.id}"></div>
-              <div class="flex gap-2">
-                <button class="nav-arrow prev-arrow" style="width:32px;height:32px;font-size:1.2rem;">←</button>
-                <button class="nav-arrow next-arrow" style="width:32px;height:32px;font-size:1.2rem;">→</button>
-              </div>
+    
+    function next() {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateDisplay();
+    }
+    
+    function prev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateDisplay();
+    }
+    
+    function goTo(index) {
+      currentIndex = index;
+      updateDisplay();
+    }
+    
+    // Build the HTML
+    let dotsHtml = '';
+    for (let i = 0; i < images.length; i++) {
+      dotsHtml += `<div class="indicator-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`;
+    }
+    
+    container.innerHTML = `
+      <div class="carousel-card">
+        <img class="carousel-img" src="${images[0].url}" alt="Rwandan scene">
+        <div class="p-4 flex flex-col gap-2">
+          <p class="desc-text">${images[0].desc}</p>
+          <div class="flex justify-between items-center mt-2">
+            <div class="flex gap-2" id="dots-${cardIndex}">${dotsHtml}</div>
+            <div class="flex gap-2">
+              <button class="nav-arrow prev-arrow" style="width:32px;height:32px;font-size:1.2rem;">←</button>
+              <button class="nav-arrow next-arrow" style="width:32px;height:32px;font-size:1.2rem;">→</button>
             </div>
-            <button class="btn-card mt-2" data-activity-name="">➕ Add to List</button>
           </div>
+          <button class="btn-card mt-2">➕ Add to List</button>
         </div>
-      `;
-      this.imgElement = this.container.querySelector(`#carousel-img-${this.container.id}`);
-      this.descElement = this.container.querySelector(`#desc-${this.container.id}`);
-      const prevBtn = this.container.querySelector('.prev-arrow');
-      const nextBtn = this.container.querySelector('.next-arrow');
-      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); this.prev(); });
-      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); this.next(); });
-      const addBtn = this.container.querySelector('.btn-card');
-      addBtn.textContent = "➕ Add to List";
-      addBtn.addEventListener('click', () => { 
-        const shortDesc = this.images[this.current].desc.length > 45 ? this.images[this.current].desc.substring(0, 42) + "..." : this.images[this.current].desc;
-        const activityName = `📸 ${shortDesc}`;
-        addToListDirectly(activityName); 
-        showToast(`"${shortDesc}" added!`); 
-      });
-      this.renderDots();
-    }
-    renderDots() {
-      const dotsContainer = this.container.querySelector(`#dots-${this.container.id}`);
-      if(!dotsContainer) return;
-      dotsContainer.innerHTML = '';
-      this.images.forEach((_, idx) => {
-        const dot = document.createElement('div');
-        dot.className = `indicator-dot ${idx === this.current ? 'active' : ''}`;
-        dot.addEventListener('click', () => { this.goTo(idx); });
-        dotsContainer.appendChild(dot);
-      });
-    }
-    updateDisplay() {
-      // Simple opacity fade for smooth user experience, but no automatic timer
-      this.imgElement.style.opacity = '0';
-      setTimeout(() => {
-        this.imgElement.src = this.images[this.current].url;
-        this.descElement.textContent = this.images[this.current].desc;
-        this.imgElement.style.opacity = '1';
-        this.renderDots();
-      }, 120);
-    }
-    goTo(index) { this.current = index % this.images.length; this.updateDisplay(); }
-    next() { this.current = (this.current + 1) % this.images.length; this.updateDisplay(); }
-    prev() { this.current = (this.current - 1 + this.images.length) % this.images.length; this.updateDisplay(); }
-    // NO startAutoSlide, NO setInterval, NO auto timer — only manual arrows
+      </div>
+    `;
+    
+    // Attach event listeners
+    const prevBtn = container.querySelector('.prev-arrow');
+    const nextBtn = container.querySelector('.next-arrow');
+    const addBtn = container.querySelector('.btn-card');
+    const dotElements = container.querySelectorAll('.indicator-dot');
+    
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+    
+    dotElements.forEach((dot, idx) => {
+      dot.addEventListener('click', () => goTo(idx));
+    });
+    
+    addBtn.addEventListener('click', () => {
+      const shortDesc = images[currentIndex].desc.length > 45 ? images[currentIndex].desc.substring(0, 42) + "..." : images[currentIndex].desc;
+      addToListDirectly(`📸 ${shortDesc}`);
+      showToast(`"${shortDesc}" added!`);
+    });
   }
-
-  // Build 4 cards into grid container
+  
+  // Create the 4 carousels
   const gridContainer = document.getElementById('carousel-grid');
-  const carouselInstances = [];
   for (let i = 0; i < 4; i++) {
     const cardDiv = document.createElement('div');
     cardDiv.id = `carousel-${i}`;
-    cardDiv.className = "carousel-card-wrapper";
     gridContainer.appendChild(cardDiv);
-    const groupImages = groups[i].length ? groups[i] : [{ url: "https://images.pexels.com/photos/31466702/pexels-photo-31466702.jpeg", desc: "Explore Rwanda's beauty" }];
-    const carousel = new ImageCarousel(cardDiv, groupImages, 0);
-    carouselInstances.push(carousel);
+    createCarousel(i, groups[i]);
   }
 
   // Preserve global references
